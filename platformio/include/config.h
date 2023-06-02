@@ -55,8 +55,8 @@
 //   Metric   : Celsius
 //   Imperial : Fahrenheit
 // #define UNITS_TEMP_KELVIN
-// #define UNITS_TEMP_CELSIUS
-#define UNITS_TEMP_FAHRENHEIT
+#define UNITS_TEMP_CELSIUS
+// #define UNITS_TEMP_FAHRENHEIT
 
 // UNITS - WIND SPEED
 //   Metric   : Kilometers per Hour
@@ -64,8 +64,8 @@
 // #define UNITS_SPEED_METERSPERSECOND
 // #define UNITS_SPEED_FEETPERSECOND
 // #define UNITS_SPEED_KILOMETERSPERHOUR
-#define UNITS_SPEED_MILESPERHOUR
-// #define UNITS_SPEED_KNOTS
+// #define UNITS_SPEED_MILESPERHOUR
+#define UNITS_SPEED_KNOTS
 // #define UNITS_SPEED_BEAUFORT
 
 // UNITS - PRESSURE
@@ -74,17 +74,17 @@
 // #define UNITS_PRES_HECTOPASCALS
 // #define UNITS_PRES_PASCALS
 // #define UNITS_PRES_MILLIMETERSOFMERCURY
-#define UNITS_PRES_INCHESOFMERCURY
+// #define UNITS_PRES_INCHESOFMERCURY
 // #define UNITS_PRES_MILLIBARS
-// #define UNITS_PRES_ATMOSPHERES
+#define UNITS_PRES_ATMOSPHERES
 // #define UNITS_PRES_GRAMSPERSQUARECENTIMETER
 // #define UNITS_PRES_POUNDSPERSQUAREINCH
 
 // UNITS - VISIBILITY DISTANCE
 //   Metric   : Kilometers
 //   Imperial : Miles
-// #define UNITS_DIST_KILOMETERS
-#define UNITS_DIST_MILES
+#define UNITS_DIST_KILOMETERS
+// #define UNITS_DIST_MILES
 
 // AIR QUALITY INDEX
 // Seemingly every country uses a different scale for Air Quality Index (AQI).
@@ -92,7 +92,7 @@
 // Feel free to request the addition of a new AQI scale by opening an Issue.
 // https://github.com/lmarzen/pollutant-concentration-to-aqi
 // Uncomment your preferred AQI scale. (exactly 1 must be defined)
-// #define AUSTRALIA_AQI
+#define AUSTRALIA_AQI
 // #define CANADA_AQHI
 // #define EUROPE_CAQI
 // #define HONG_KONG_AQHI
@@ -101,13 +101,13 @@
 // #define SINGAPORE_PSI
 // #define SOUTH_KOREA_CAI
 // #define UNITED_KINGDOM_DAQI
-#define UNITED_STATES_AQI
+// #define UNITED_STATES_AQI
 
 // WIND ICON PRECISION
 // The wind direction icon shown to the left of the wind speed can indicate wind
 // direction with a minimum error of ±0.5°. This uses more flash storage because
 // 360 24x24 wind direction icons must be stored, totaling ~25kB. For either
-// preference or in case flash space becomes a concern there are a handful of
+// preference or incase flash space becomes a concern there are a handful of
 // selectable options listed below. 360 points seems excessive, but the option
 // is there.
 //
@@ -121,8 +121,8 @@
 // (exactly 1 must be defined)
 // #define WIND_DIRECTIONS_CARDINAL
 // #define WIND_DIRECTIONS_ORDINAL
-#define WIND_DIRECTIONS_SECONDARY_INTERCARDINAL
-// #define WIND_DIRECTIONS_TERTIARY_INTERCARDINAL
+// #define WIND_DIRECTIONS_SECONDARY_INTERCARDINAL
+#define WIND_DIRECTIONS_TERTIARY_INTERCARDINAL
 // #define WIND_DIRECTIONS_360
 
 // FONTS
@@ -158,7 +158,7 @@
 
 // DISABLE ALERTS
 // The handling of alerts is complex. Each country has a unique national alert
-// system that receives alerts from many different government agencies. This 
+// system that recieves alerts from many different government agencies. This 
 // results is huge variance in the formatting of alerts. OpenWeatherMap provides
 // alerts in English only. Any combination of these factors may make it
 // undesirable to display alerts in some regions.
@@ -205,4 +205,3 @@ extern const unsigned long LOW_BATTERY_SLEEP_INTERVAL;
 extern const unsigned long VERY_LOW_BATTERY_SLEEP_INTERVAL;
 
 #endif
-

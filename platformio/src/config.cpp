@@ -54,7 +54,7 @@ const String OWM_ENDPOINT = "api.openweathermap.org";
 // - Go to https://home.openweathermap.org/subscriptions/billing_info/onecall_30/base?key=base&service=onecall_30
 // - Follow the instructions to complete the subscription.
 // - Go to https://home.openweathermap.org/subscriptions and set the "Calls per
-//   day (no more than)" to 1,000. This ensures you will never overrun the free
+//   day (no more than)" to 1,000. This ensures you will never overrun the free 
 //   calls.
 const String OWM_ONECALL_VERSION = "3.0";
 
@@ -74,21 +74,21 @@ const char *TIMEZONE = "EST5EDT,M3.2.0,M11.1.0";
 // For more information about formatting see
 // https://man7.org/linux/man-pages/man3/strftime.3.html
 // const char *TIME_FORMAT = "%l:%M%P"; // 12-hour ex: 1:23am  11:00pm
-const char *TIME_FORMAT = "%H:%M";   // 24-hour ex: 01:23   23:00
+const char *TIME_FORMAT = "%l:%M%p";   // 24-hour ex: 01:23   23:00
 // Time format used when displaying axis labels. (Max 11 characters)
 // For more information about formatting see
 // https://man7.org/linux/man-pages/man3/strftime.3.html
 // const char *HOUR_FORMAT = "%l%P"; // 12-hour ex: 1am  11pm
-const char *HOUR_FORMAT = "%H";      // 24-hour ex: 01   23
+const char *HOUR_FORMAT = "%l%P";      // 24-hour ex: 01   23
 // Date format used when displaying date in top-right corner. For more 
 // For more information about formatting see
 // https://man7.org/linux/man-pages/man3/strftime.3.html
-const char *DATE_FORMAT = "%A, %B %e"; // Saturday, January 1
+const char *DATE_FORMAT = "%A, %e %B "; // Saturday, January 1
 // Date/Time format used when displaying the last refresh time along the bottom
 // of the screen
 // For more information about formatting see
 // https://man7.org/linux/man-pages/man3/strftime.3.html
-const char *REFRESH_TIME_FORMAT = "%x %H:%M";
+const char *REFRESH_TIME_FORMAT = "%H:%M %d/%m/%y";
 // NTP_SERVER_1 is the primary time server, while NTP_SERVER_2 is a fallback.
 // In most cases it's best to use pool.ntp.org to find an NTP server
 // The system will try finding the closest available servers for you.
@@ -101,12 +101,12 @@ const long SLEEP_DURATION = 30;
 // If BED_TIME == WAKE_TIME, then this battery saving feature will be disabled.
 // (range: 0-23)
 const int BED_TIME  = 00; // Last update at 00:00 (midnight) until WAKE_TIME.
-const int WAKE_TIME = 06; // Hour of first update after BED_TIME, 06:00.
+const int WAKE_TIME = 00; // Hour of first update after BED_TIME, 06:00.
 
 // HOURLY OUTLOOK GRAPH
 // Number of hours to display on the outlook graph.
 // Value must be between 8-48 (inclusively).
-const int HOURLY_GRAPH_MAX = 24;
+const int HOURLY_GRAPH_MAX = 48;
 
 // BATTERY
 // To protect the battery upon LOW_BATTERY_VOLTAGE, the display will cease to
