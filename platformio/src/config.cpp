@@ -69,7 +69,7 @@ const String CITY_STRING = "New York, New York";
 // TIME
 // For list of time zones see 
 // https://github.com/nayarsystems/posix_tz_db/blob/master/zones.csv
-const char *TIMEZONE = "EST5EDT,M3.2.0,M11.1.0";
+const char *TIMEZONE = "AEST-10";
 // Time format used when displaying sunrise/set times. (Max 11 characters)
 // For more information about formatting see
 // https://man7.org/linux/man-pages/man3/strftime.3.html
@@ -106,7 +106,7 @@ const int WAKE_TIME = 00; // Hour of first update after BED_TIME, 06:00.
 // HOURLY OUTLOOK GRAPH
 // Number of hours to display on the outlook graph.
 // Value must be between 8-48 (inclusively).
-const int HOURLY_GRAPH_MAX = 48;
+const int HOURLY_GRAPH_MAX = 24;
 
 // BATTERY
 // To protect the battery upon LOW_BATTERY_VOLTAGE, the display will cease to
@@ -115,12 +115,16 @@ const int HOURLY_GRAPH_MAX = 48;
 // minutes). Once the battery voltage has fallen to CRIT_LOW_BATTERY_VOLTAGE,
 // the esp32 will hibernate and a manual press of the reset (RST) button to
 // begin operating again.
-const float BATTERY_WARN_VOLTAGE     = 3.40; // (volts) ~ 10%
-const float LOW_BATTERY_VOLTAGE      = 3.20; // (volts)
-const float VERY_LOW_BATTERY_VOLTAGE = 3.10; // (volts)
-const float CRIT_LOW_BATTERY_VOLTAGE = 3.00; // (volts)
-const unsigned long LOW_BATTERY_SLEEP_INTERVAL      = 30;  // (minutes)
+const float BATTERY_WARN_VOLTAGE     = 3.30; // (volts) ~ 10%
+const float LOW_BATTERY_VOLTAGE      = 3.30; // (volts)
+const float VERY_LOW_BATTERY_VOLTAGE = 3.20; // (volts)
+const float CRIT_LOW_BATTERY_VOLTAGE = 3.10; // (volts)
+const unsigned long LOW_BATTERY_SLEEP_INTERVAL      = 60;  // (minutes)
 const unsigned long VERY_LOW_BATTERY_SLEEP_INTERVAL = 120; // (minutes)
+
+
+// ERRORS
+const unsigned long ERROR_SLEEP_DIV = 3;
 
 // See config.h for the below options
 // E-PAPER PANEL
