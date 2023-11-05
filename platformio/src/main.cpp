@@ -31,9 +31,10 @@
 
 #include "icons/icons_196x196.h"
 
-#include "FS.h"
 #include "SD.h"
+#include "FS.h"
 #include "SPI.h"
+
 
 void listDir(fs::FS &fs, const char * dirname, uint8_t levels){
   Serial.printf("Listing directory: %s\n", dirname);
@@ -191,6 +192,8 @@ void testFileIO(fs::FS &fs, const char * path){
   Serial.printf("%u bytes written for %u ms\n", 2048 * 512, end);
   file.close();
 }
+
+
 // too large to allocate locally on stack
 static owm_resp_onecall_t       owm_onecall;
 static owm_resp_air_pollution_t owm_air_pollution;
@@ -291,61 +294,8 @@ void setup()
   unsigned long startTime = millis();
   Serial.begin(115200);
 
-  if(!SD.begin(D3)){
-    Serial.println("Card Mount Failed");
-    return;
-  }
-  uint8_t cardType = SD.cardType();
-
-  if(cardType == CARD_NONE){
-    Serial.println("No SD card attached");
-    return;
-  }
-
-  // listDir(SD, "/", 0);
-  Serial.printf("Listing directory: %s\n", "/");
-
-  File root = SD.open("/");
-  if(!root){
-    Serial.println("Failed to open directory");
-    return;
-  }
-  if(!root.isDirectory()){
-    Serial.println("Not a directory");
-    return;
-  }
-
-  File file = root.openNextFile();
-  while(file){
-    if(file.isDirectory()){
-      Serial.print("  DIR : ");
-      Serial.println(file.name());
-    } else {
-      Serial.print("  FILE: ");
-      Serial.print(file.name());
-      Serial.print("  SIZE: ");
-      Serial.println(file.size());
-    }
-    file = root.openNextFile();
-  }
-
-  // readFile(SD, "/config.txt");
-
-  Serial.printf("Reading file: %s\n", "/config.txt");
-
-  File ffile = SD.open("/config.txt");
-  if(!ffile){
-    Serial.println("Failed to open file for reading");
-    return;
-  }
-
-  Serial.print("Read from file: ");
-  while(ffile.available()){
-    Serial.write(ffile.read());
-  }
-  ffile.close();
-
-
+  
+  
   // GET BATTERY VOLTAGE
   // DFRobot FireBeetle Esp32-E V1.0 has voltage divider (1M+1M), so readings 
   // are multiplied by 2. Readings are divided by 1000 to convert mV to V.
@@ -549,6 +499,62 @@ void setup()
   Serial.println("Cleared Errors");
   errors = 0;      
   prefs.putUInt("errors", errors);
+
+  // ///////////////////////////////////////////////////////////////
+  if(!SD.begin(D3)){
+    Serial.println("Card Mount Failed");
+    return;
+  }
+  uint8_t cardType = SD.cardType();
+
+  if(cardType == CARD_NONE){
+    Serial.println("No SD card attached");
+    return;
+  }
+
+  // listDir(SD, "/", 0);
+  Serial.printf("Listing directory: %s\n", "/");
+
+  File root = SD.open("/");
+  if(!root){
+    Serial.println("Failed to open directory");
+    return;
+  }
+  if(!root.isDirectory()){
+    Serial.println("Not a directory");
+    return;
+  }
+
+  File file = root.openNextFile();
+  while(file){
+    if(file.isDirectory()){
+      Serial.print("  DIR : ");
+      Serial.println(file.name());
+    } else {
+      Serial.print("  FILE: ");
+      Serial.print(file.name());
+      Serial.print("  SIZE: ");
+      Serial.println(file.size());
+    }
+    file = root.openNextFile();
+  }
+
+  // readFile(SD, "/config.txt");
+
+  // Serial.printf("Reading file: %s\n", "/config.txt");
+
+  // File ffile = SD.open("/config.txt");
+  // if(!ffile){
+  //   Serial.println("Failed to open file for reading");
+  //   return;
+  // }
+
+  // Serial.print("Read from file: ");
+  // while(ffile.available()){
+  //   Serial.write(ffile.read());
+  // }
+  // ffile.close();
+  // ///////////////////////////////////////////////////////////////
 
   // DEEP-SLEEP
   beginDeepSleep(startTime, &timeInfo);
