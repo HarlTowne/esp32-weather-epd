@@ -34,6 +34,7 @@
 #include "SD.h"
 #include "FS.h"
 #include "SPI.h"
+#include <SDConfig.h>
 
 
 void listDir(fs::FS &fs, const char * dirname, uint8_t levels){
@@ -193,6 +194,7 @@ void testFileIO(fs::FS &fs, const char * path){
   file.close();
 }
 
+char configFile[] = "/settings.cfg"; // filename
 
 // too large to allocate locally on stack
 static owm_resp_onecall_t       owm_onecall;
@@ -294,7 +296,49 @@ void setup()
   unsigned long startTime = millis();
   Serial.begin(115200);
 
+  // ///////////////////////////////////////////////////////////////
+
+  // // WIFI_SSID     = strdup(DEFAULT_WIFI_SSID);
+  // // WIFI_PASSWORD = strdup(DEFAULT_WIFI_PASSWORD);
+  if(!SD.begin(D3)){
+    Serial.println("Card Mount Failed");
+  }
+  else
+  {
+    int maxLineLength = 127;
+    SDConfig cfg;
+    // Open the configuration file.
+    if (!cfg.begin(configFile, maxLineLength)) 
+    {
+      Serial.print("Failed to open configuration file: ");
+      Serial.println(configFile);
+    }
+    else
+    {
+      // Read each setting from the file.
+      while (cfg.readNextSetting()) 
+      {
+        // Put a nameIs() block here for each setting you have.
+        // doDelay
+        if (cfg.nameIs("WIFI_SSID")) 
+        {
+          WIFI_SSID = cfg.copyValue();
+          Serial.print("WIFI_SSID set to ");
+          Serial.println(WIFI_SSID);
+        } 
+        else 
+        {
+          // report unrecognized names.
+          Serial.print("Unknown name in config: ");
+          Serial.println(cfg.getName());
+        }
+      }
+      // clean up
+      cfg.end();   
+    }
+  }
   
+  // ///////////////////////////////////////////////////////////////
   
   // GET BATTERY VOLTAGE
   // DFRobot FireBeetle Esp32-E V1.0 has voltage divider (1M+1M), so readings 
@@ -500,61 +544,7 @@ void setup()
   errors = 0;      
   prefs.putUInt("errors", errors);
 
-  // ///////////////////////////////////////////////////////////////
-  if(!SD.begin(D3)){
-    Serial.println("Card Mount Failed");
-    return;
-  }
-  uint8_t cardType = SD.cardType();
-
-  if(cardType == CARD_NONE){
-    Serial.println("No SD card attached");
-    return;
-  }
-
-  // listDir(SD, "/", 0);
-  Serial.printf("Listing directory: %s\n", "/");
-
-  File root = SD.open("/");
-  if(!root){
-    Serial.println("Failed to open directory");
-    return;
-  }
-  if(!root.isDirectory()){
-    Serial.println("Not a directory");
-    return;
-  }
-
-  File file = root.openNextFile();
-  while(file){
-    if(file.isDirectory()){
-      Serial.print("  DIR : ");
-      Serial.println(file.name());
-    } else {
-      Serial.print("  FILE: ");
-      Serial.print(file.name());
-      Serial.print("  SIZE: ");
-      Serial.println(file.size());
-    }
-    file = root.openNextFile();
-  }
-
-  // readFile(SD, "/config.txt");
-
-  // Serial.printf("Reading file: %s\n", "/config.txt");
-
-  // File ffile = SD.open("/config.txt");
-  // if(!ffile){
-  //   Serial.println("Failed to open file for reading");
-  //   return;
-  // }
-
-  // Serial.print("Read from file: ");
-  // while(ffile.available()){
-  //   Serial.write(ffile.read());
-  // }
-  // ffile.close();
-  // ///////////////////////////////////////////////////////////////
+  
 
   // DEEP-SLEEP
   beginDeepSleep(startTime, &timeInfo);

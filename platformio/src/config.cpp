@@ -35,12 +35,12 @@ const uint8_t PIN_BME_SCL = 16;
 const uint8_t BME_ADDRESS = 0x76; // if sensor does not work, try 0x77
 
 // WIFI CREDENTIALS
-const char *WIFI_SSID     = "ssid";
-const char *WIFI_PASSWORD = "password";
+char *WIFI_SSID     = "ssid";
+char *WIFI_PASSWORD = "password";
 
 // OPENWEATHERMAP API
 // OpenWeatherMap API key, https://openweathermap.org/
-const String OWM_APIKEY   = "abcdefghijklmnopqrstuvwxyz012345";
+String OWM_APIKEY   = "abcdefghijklmnopqrstuvwxyz012345";
 const String OWM_ENDPOINT = "api.openweathermap.org";
 // OpenWeatherMap One Call 2.5 API is deprecated for all new free users 
 // (accounts created after Summer 2022).
@@ -61,15 +61,15 @@ const String OWM_ONECALL_VERSION = "3.0";
 // LOCATION
 // Set your latitude and longitude.
 // (used to get weather data as part of API requests to OpenWeatherMap)
-const String LAT = "40.7128";
-const String LON = "-74.0060";
+String LAT = "40.7128";
+String LON = "-74.0060";
 // City name that will be shown in the top-right corner of the display.
-const String CITY_STRING = "New York, New York";
+String CITY_STRING = "New York, New York";
 
 // TIME
 // For list of time zones see 
 // https://github.com/nayarsystems/posix_tz_db/blob/master/zones.csv
-const char *TIMEZONE = "AEST-10";
+char *TIMEZONE = "AEST-10";
 // Time format used when displaying sunrise/set times. (Max 11 characters)
 // For more information about formatting see
 // https://man7.org/linux/man-pages/man3/strftime.3.html
@@ -97,7 +97,7 @@ const char *NTP_SERVER_2 = "time.nist.gov";
 // Sleep duration in minutes. (aka how often esp32 will wake for an update)
 // Aligned to the nearest minute boundary, so if 30 will always update at 00 or 
 // 30 past the hour. (range: 0-59)
-const long SLEEP_DURATION = 30;
+long SLEEP_DURATION = 30;
 // If BED_TIME == WAKE_TIME, then this battery saving feature will be disabled.
 // (range: 0-23)
 const int BED_TIME  = 00; // Last update at 00:00 (midnight) until WAKE_TIME.
@@ -106,7 +106,7 @@ const int WAKE_TIME = 00; // Hour of first update after BED_TIME, 06:00.
 // HOURLY OUTLOOK GRAPH
 // Number of hours to display on the outlook graph.
 // Value must be between 8-48 (inclusively).
-const int HOURLY_GRAPH_MAX = 24;
+int HOURLY_GRAPH_MAX = 24;
 
 // BATTERY
 // To protect the battery upon LOW_BATTERY_VOLTAGE, the display will cease to
@@ -124,7 +124,7 @@ const unsigned long VERY_LOW_BATTERY_SLEEP_INTERVAL = 120; // (minutes)
 
 
 // ERRORS
-const unsigned long ERROR_SLEEP_DIV = 3;
+unsigned long ERROR_SLEEP_DIV = 3;
 
 // See config.h for the below options
 // E-PAPER PANEL
