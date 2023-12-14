@@ -138,6 +138,10 @@ void setup()
   unsigned long startTime = millis();
   Serial.begin(115200);
 
+  // enable power to the screen
+  pinMode(21, OUTPUT);
+  digitalWrite(21, HIGH);
+
   // ///////////////////////////////////////////////////////////////
 
   // // WIFI_SSID     = strdup(DEFAULT_WIFI_SSID);
@@ -440,8 +444,9 @@ void setup()
   errors = 0;      
   prefs.putUInt("errors", errors);
 
-  
-
+  // disable screen power
+  delay(1000);
+  digitalWrite(21, LOW);
   // DEEP-SLEEP
   beginDeepSleep(startTime, &timeInfo);
 } // end setup
