@@ -272,14 +272,14 @@ void setup()
       display.powerOff();
     }
 
-    if (batteryVoltage <= CRIT_LOW_BATTERY_VOLTAGE)
-    { // critically low battery
-      // don't set esp_sleep_enable_timer_wakeup();
-      // We won't wake up again until someone manually presses the RST button.
-      Serial.println("Critically low battery voltage!");
-      Serial.println("Hibernating without wake time!");
-    }
-    else if (batteryVoltage <= VERY_LOW_BATTERY_VOLTAGE)
+    // if (batteryVoltage <= CRIT_LOW_BATTER Y_VOLTAGE)
+    // { // critically low battery
+    //   // don't set esp_sleep_enable_timer_wakeup();
+    //   // We won't wake up again until someone manually presses the RST button.
+    //   Serial.println("Critically low battery voltage!");
+    //   Serial.println("Hibernating without wake time!");
+    // }
+    /*else*/ if (batteryVoltage <= VERY_LOW_BATTERY_VOLTAGE)
     { // very low battery
       esp_sleep_enable_timer_wakeup(VERY_LOW_BATTERY_SLEEP_INTERVAL 
                                     * 60ULL * 1000000ULL);
@@ -437,6 +437,7 @@ void setup()
 #endif
     drawStatusBar(statusStr, refreshTimeStr, wifiRSSI, batteryVoltage);
   } while (display.nextPage());
+  delay(5000);
   display.powerOff();
 
   // Clear error count
@@ -445,7 +446,7 @@ void setup()
   prefs.putUInt("errors", errors);
 
   // disable screen power
-  delay(1000);
+  delay(5000);
   digitalWrite(21, LOW);
   // DEEP-SLEEP
   beginDeepSleep(startTime, &timeInfo);

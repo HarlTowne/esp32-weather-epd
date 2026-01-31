@@ -872,15 +872,52 @@ void drawOutlookGraph(owm_hourly_t *const hourly, tm timeInfo)
     y0_t = static_cast<int>(round(
                             yPos1 - (yPxPerUnit * (hourly[i    ].pop * 100)) ));
     y1_t = yPos1;
+    // if(y1_t > y0_t+50)
+    // {
+    //   y1_t  = y0_t+50;
+    // }
 
+    // // graph PoP
+    // for (int y = y1_t - 1; y > y0_t; y -= 2)
+    // {
+    //   for (int x = x0_t + (x0_t % 2); x < x1_t; x += 2)
+    //   {
+    //     if(y < y0_t+25 || ((y-(y1_t - 1))%4==0 && (x-(x0_t + (x0_t % 2)))%4==0))
+    //     {
+    //       display.drawPixel(x, y, GxEPD_BLACK);
+    //     }
+    //   }
+    // }
     // graph PoP
-    for (int y = y1_t - 1; y > y0_t; y -= 2)
+    for (int y = y1_t - 1; y > y0_t; y -= 1)
     {
-      for (int x = x0_t + (x0_t % 2); x < x1_t; x += 2)
+      for (int x = x0_t + (x0_t % 1); x < x1_t; x += 1)
       {
-        display.drawPixel(x, y, GxEPD_BLACK);
+        if((y < y0_t+25 && y%2==0 && x%2==0) || (y%4==0 && x%4==0) || y < y0_t+3)
+        {
+          display.drawPixel(x, y, GxEPD_BLACK);
+        }
       }
     }
+    // graph PoP
+    // for (int y = y1_t - 1; y > y0_t; y -= 3)
+    // {
+    //   for (int x = x0_t + (x0_t % 3); x < x1_t; x += 3)
+    //   {
+    //     display.drawPixel(x, y, GxEPD_BLACK);
+    //   }
+    // }
+    // graph PoP
+    // for (int y = y1_t - 1; y > y0_t; y -= 3)
+    // {
+    //   for (int x = x0_t; x < x1_t; x += 1)
+    //   {
+    //     if (x % 3 == 0)
+    //     {
+    //       display.drawPixel(x, y, GxEPD_BLACK);
+    //     }
+    //   }
+    // }
 
     if ((i % hourInterval) == 0)
     {

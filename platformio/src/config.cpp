@@ -35,12 +35,12 @@ const uint8_t PIN_BME_SCL = 16;
 const uint8_t BME_ADDRESS = 0x76; // if sensor does not work, try 0x77
 
 // WIFI CREDENTIALS
-char *WIFI_SSID     = "ssid";
-char *WIFI_PASSWORD = "password";
+char *WIFI_SSID     = "Sean's_home_wifi_2.4G";
+char *WIFI_PASSWORD = "sean1234";
 
 // OPENWEATHERMAP API
 // OpenWeatherMap API key, https://openweathermap.org/
-String OWM_APIKEY   = "abcdefghijklmnopqrstuvwxyz012345";
+String OWM_APIKEY   = "c18b69ea210c6bb062dc39c8681757cd";
 const String OWM_ENDPOINT = "api.openweathermap.org";
 // OpenWeatherMap One Call 2.5 API is deprecated for all new free users 
 // (accounts created after Summer 2022).
@@ -61,10 +61,10 @@ const String OWM_ONECALL_VERSION = "3.0";
 // LOCATION
 // Set your latitude and longitude.
 // (used to get weather data as part of API requests to OpenWeatherMap)
-String LAT = "40.7128";
-String LON = "-74.0060";
+String LAT = "-16.9579";
+String LON = "145.7216";
 // City name that will be shown in the top-right corner of the display.
-String CITY_STRING = "New York, New York";
+String CITY_STRING = "Bayview Heights, Cairns";
 
 // TIME
 // For list of time zones see 
@@ -115,10 +115,10 @@ int HOURLY_GRAPH_MAX = 24;
 // minutes). Once the battery voltage has fallen to CRIT_LOW_BATTERY_VOLTAGE,
 // the esp32 will hibernate and a manual press of the reset (RST) button to
 // begin operating again.
-const float BATTERY_WARN_VOLTAGE     = 3.30; // (volts) ~ 10%
-const float LOW_BATTERY_VOLTAGE      = 3.30; // (volts)
-const float VERY_LOW_BATTERY_VOLTAGE = 3.20; // (volts)
-const float CRIT_LOW_BATTERY_VOLTAGE = 3.10; // (volts)
+const float BATTERY_WARN_VOLTAGE     = 3.40; // (volts) ~ 10%
+const float LOW_BATTERY_VOLTAGE      = 3.20; // (volts)
+const float VERY_LOW_BATTERY_VOLTAGE = 3.10; // (volts)
+const float CRIT_LOW_BATTERY_VOLTAGE = 2.60; // (volts)
 const unsigned long LOW_BATTERY_SLEEP_INTERVAL      = 60;  // (minutes)
 const unsigned long VERY_LOW_BATTERY_SLEEP_INTERVAL = 120; // (minutes)
 
